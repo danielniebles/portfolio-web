@@ -9,15 +9,19 @@ interface ThemeSwitcherProps {
 }
 
 export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
-  const [active, setActive]       = useState<ThemeId>('terminal_green')
-  const [scanning, setScanning]   = useState(false)
+  // Lazy initializer reads localStorage once at first render — avoids calling
+  // setActive synchronously inside an effect (which triggers cascade warnings).
+  const [active, setActive] = useState<ThemeId>(() => loadSavedTheme())
+  const [scanning, setScanning] = useState(false)
 
-  // On mount: restore saved theme + trigger first-visit scan animation
   useEffect(() => {
-    const saved = loadSavedTheme()
-    applyTheme(saved)
-    setActive(saved)
+    // Apply CSS vars only if the anti-flash inline script in index.html
+    // didn't already set data-theme (i.e. vars are already correct).
+    if (!document.documentElement.getAttribute('data-theme')) {
+      applyTheme(active)
+    }
 
+    // First-visit scan animation
     try {
       if (!localStorage.getItem(FIRST_VISIT_KEY)) {
         const t = setTimeout(() => {
@@ -32,6 +36,9 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
     } catch {
       // localStorage unavailable
     }
+  // active intentionally excluded — we only need the mount-time value for the
+  // fallback applyTheme call; subsequent changes go through handleSelect directly
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleSelect = (id: ThemeId) => {
@@ -41,9 +48,12 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
   }
 
   const swatchSize = compact ? 'w-5 h-5' : 'w-4 h-4'
+  // Compact mode: pad each button so the tap area meets the 44×44px minimum
+  // while keeping the visual swatch its intended size
+  const tapArea = compact ? 'p-[10px]' : ''
 
   return (
-    <div className={`flex items-center gap-1.5 ${compact ? 'py-1' : ''}`}>
+    <div className={`flex items-center ${compact ? 'gap-0' : 'gap-2'}`}>
       <span className="font-mono text-[10px] text-text-secondary select-none shrink-0">
         theme:
       </span>
@@ -64,24 +74,32 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
             animate={scanning ? { opacity: [1, 0.3, 1] } : {}}
             transition={scanning ? { delay: i * 0.12, duration: 0.35 } : {}}
             className={[
-              swatchSize,
-              'rounded-full shrink-0 transition-[outline] duration-150 cursor-pointer',
+              // tapArea expands the touch target to 44×44px in compact/mobile mode
+              tapArea,
+              'rounded-full shrink-0 cursor-pointer',
               'flex items-center justify-center',
-              // Active ring uses the current accent var so it follows the theme
-              isActive
-                ? 'outline outline-2 outline-offset-2 outline-[color:var(--color-terminal-green)]'
-                : 'outline outline-1 outline-offset-1 outline-transparent hover:outline-[color:var(--color-terminal-green)]/40',
             ].join(' ')}
-            style={
-              isLight
-                ? { backgroundColor: theme.swatch, border: '1px solid var(--color-border-subtle)' }
-                : { backgroundColor: theme.swatch }
-            }
           >
-            {/* Sun symbol for light mode swatch */}
-            {isLight && (
-              <span className="text-[8px] leading-none text-[#3D6B58] select-none">☀</span>
-            )}
+            {/* Visual swatch — separate from the tap-area wrapper */}
+            <span
+              className={[
+                swatchSize,
+                'rounded-full flex items-center justify-center transition-[outline] duration-150',
+                isActive
+                  ? 'outline-2 outline-offset-2 outline-terminal-green'
+                  : 'outline-1 outline-offset-1 outline-transparent group-hover:outline-border-subtle hover:outline-border-subtle',
+              ].join(' ')}
+              style={
+                isLight
+                  ? { backgroundColor: theme.swatch, border: '1px solid var(--color-border-subtle)' }
+                  : { backgroundColor: theme.swatch }
+              }
+            >
+              {/* Sun symbol for light mode swatch */}
+              {isLight && (
+                <span className="text-[8px] leading-none text-[#3D6B58] select-none">☀</span>
+              )}
+            </span>
           </motion.button>
         )
       })}

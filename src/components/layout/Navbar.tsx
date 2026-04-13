@@ -58,8 +58,8 @@ export function Navbar() {
 
         {/* Right side: theme switcher + CTA + hamburger */}
         <div className="flex items-center gap-4">
-          {/* Theme switcher — desktop only */}
-          <div className="hidden md:flex">
+          {/* Theme switcher — large screens only (≥1024px); tablet uses hamburger menu */}
+          <div className="hidden lg:flex">
             <ThemeSwitcher />
           </div>
 
