@@ -26,9 +26,10 @@ export function TerminalForm() {
   const advance = (from: 'name' | 'email') => {
     if (!values[from].trim()) return
     setStep(from === 'name' ? 'email' : 'message')
+    // Focus the next field after the transition renders
     setTimeout(() => {
-      if (from === 'email') textareaRef.current?.focus()
-      else inputRef.current?.focus()
+      if (from === 'name') inputRef.current?.focus()
+      else textareaRef.current?.focus()
     }, 80)
   }
 
@@ -83,7 +84,6 @@ export function TerminalForm() {
           {step === 'name' ? (
             <input
               ref={inputRef}
-              autoFocus
               value={values.name}
               onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
               onKeyDown={(e) => onKeyDown(e, 'name')}
@@ -108,7 +108,6 @@ export function TerminalForm() {
             {step === 'email' ? (
               <input
                 ref={inputRef}
-                autoFocus
                 type="email"
                 value={values.email}
                 onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
@@ -139,7 +138,6 @@ export function TerminalForm() {
               <>
                 <textarea
                   ref={textareaRef}
-                  autoFocus
                   rows={4}
                   value={values.message}
                   onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
