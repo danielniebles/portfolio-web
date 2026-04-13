@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SECTION_IDS } from '../../lib/constants'
+import { ThemeSwitcher } from '../ui/ThemeSwitcher'
 
 const navLinks = [
   { label: 'about',      href: `#${SECTION_IDS.about}` },
@@ -29,7 +30,7 @@ export function Navbar() {
   }, [isOpen])
 
   return (
-    <header className="fixed top-0 w-full z-50 h-16 bg-bg-deep/95 backdrop-blur-sm border-b border-border-subtle/40 shadow-[0_0_15px_rgba(0,255,135,0.04)]">
+    <header className="fixed top-0 w-full z-50 h-16 bg-bg-deep/95 backdrop-blur-sm border-b border-border-subtle/40" style={{ boxShadow: '0 0 15px var(--color-accent-glow-04)' }}>
       <div className="flex justify-between items-center px-6 max-w-7xl mx-auto h-full">
 
         {/* Logo */}
@@ -55,8 +56,13 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Right side: CTA + hamburger */}
+        {/* Right side: theme switcher + CTA + hamburger */}
         <div className="flex items-center gap-4">
+          {/* Theme switcher — desktop only */}
+          <div className="hidden md:flex">
+            <ThemeSwitcher />
+          </div>
+
           <a
             href={`#${SECTION_IDS.contact}`}
             onClick={close}
@@ -119,8 +125,13 @@ export function Navbar() {
               exit={{ opacity: 0, y: -6, transition: { duration: 0.15, ease: 'easeIn' } }}
               className="md:hidden absolute top-16 left-0 right-0 bg-bg-deep border-b border-border-subtle"
             >
+              {/* Theme switcher row */}
+              <div className="px-6 pt-4 pb-3 border-b border-border-subtle/30">
+                <ThemeSwitcher compact />
+              </div>
+
               {/* Terminal prompt header */}
-              <div className="px-6 pt-4 pb-2">
+              <div className="px-6 pt-3 pb-2">
                 <p className="font-mono text-[10px] text-text-secondary/50 tracking-widest uppercase">
                   <span className="text-terminal-green">daniel@portfolio</span>:~$ ls ./nav
                 </p>

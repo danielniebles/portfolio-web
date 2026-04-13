@@ -40,8 +40,8 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.5); }
-  50%       { opacity: 0.8; box-shadow: 0 0 0 5px rgba(0, 255, 135, 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--color-accent-glow-50); }
+  50%       { opacity: 0.8; box-shadow: 0 0 0 5px transparent; }
 }
 
 @keyframes dot-grid-drift {
@@ -53,6 +53,13 @@
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
+  }
+
+  /* Glow vars — updated per-theme so rgba() in keyframes and shadows can follow the accent */
+  :root {
+    --color-accent-glow-50: rgba(0, 255, 135, 0.5);
+    --color-accent-glow-08: rgba(0, 255, 135, 0.08);
+    --color-accent-glow-04: rgba(0, 255, 135, 0.04);
   }
 
   html {
@@ -68,6 +75,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
@@ -136,6 +144,12 @@
   /* Highlighted experience card (cross-section interaction) */
   .card-highlighted {
     border-color: var(--color-terminal-green) !important;
-    box-shadow: 0 0 0 1px var(--color-terminal-green), 0 0 24px rgba(0, 255, 135, 0.08);
+    box-shadow: 0 0 0 1px var(--color-terminal-green), 0 0 24px var(--color-accent-glow-08);
+  }
+
+  /* Light mode overrides */
+  [data-theme="light"] .scanlines { opacity: 0.05; }
+  [data-theme="light"] .card-highlighted {
+    box-shadow: 0 0 0 1px var(--color-terminal-green), 0 2px 12px rgba(0, 0, 0, 0.08);
   }
 }
