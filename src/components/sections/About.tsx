@@ -20,7 +20,7 @@ const itemVariants: Variants = {
 const stats = [
   { key: 'years_active',    value: '> 7+' },
   { key: 'systems_built',   value: '> 50+' },
-  { key: 'languages_spoken', value: '> 3' },
+  { key: 'languages', value: '> 3' },
 ]
 
 export function About({ className = '' }: AboutProps) {
@@ -65,7 +65,7 @@ export function About({ className = '' }: AboutProps) {
             {stats.map(({ key, value }) => (
               <div key={key} className="bg-surface border border-border-subtle p-4">
                 <p className="text-terminal-green font-mono text-xl font-bold">{value}</p>
-                <p className="text-[10px] uppercase tracking-widest text-text-secondary/60 font-mono mt-1">
+                <p className="text-[10px] uppercase tracking-widest text-text-secondary font-mono mt-1">
                   {key}
                 </p>
               </div>

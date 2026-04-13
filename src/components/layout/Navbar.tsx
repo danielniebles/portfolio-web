@@ -49,7 +49,7 @@ export function Navbar() {
             <a
               key={label}
               href={href}
-              className="font-mono text-sm text-text-primary/60 hover:text-terminal-green transition-colors hover:bg-surface px-2 py-1"
+              className="font-mono text-sm text-text-secondary hover:text-terminal-green transition-colors hover:bg-surface px-2 py-1"
             >
               {label}
             </a>
@@ -132,7 +132,7 @@ export function Navbar() {
 
               {/* Terminal prompt header */}
               <div className="px-6 pt-3 pb-2">
-                <p className="font-mono text-[10px] text-text-secondary/50 tracking-widest uppercase">
+                <p className="font-mono text-[10px] text-text-secondary/50 tracking-widest uppercase" aria-hidden="true">
                   <span className="text-terminal-green">daniel@portfolio</span>:~$ ls ./nav
                 </p>
               </div>

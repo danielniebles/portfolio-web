@@ -71,7 +71,7 @@ export function TerminalForm() {
         <span className="text-text-secondary">:~$ </span>
         <span className="text-text-primary">initiate_connection</span>
       </p>
-      <p className="text-text-secondary text-xs opacity-60">
+      <p className="text-text-secondary text-xs">
         Gathering communication parameters...
       </p>
 

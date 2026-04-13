@@ -45,7 +45,7 @@ export function TechStack({ onCompanyClick, className = '' }: TechStackProps) {
             <p className="text-terminal-green font-mono text-sm mb-2">&gt; tech_stack --verbose</p>
             <h2 className="text-4xl font-bold tracking-tighter">Core Arsenal</h2>
           </div>
-          <p className="font-mono text-xs text-text-secondary/40">
+          <p className="font-mono text-xs text-text-secondary/40" aria-hidden="true">
             LATENCY: 14ms | UPTIME: 99.9%
           </p>
         </motion.div>

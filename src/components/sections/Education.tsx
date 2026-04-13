@@ -42,7 +42,7 @@ export function Education({ className = '' }: EducationProps) {
         {/* Commit timeline */}
         <div className="relative space-y-10">
           {/* Vertical connector line */}
-          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border-subtle/60" />
+          <div className="absolute left-1.75 top-2 bottom-2 w-px bg-border-subtle/60" />
 
           {educationData.map((entry) => (
             <motion.div
@@ -70,7 +70,7 @@ export function Education({ className = '' }: EducationProps) {
                     {entry.institution}
                   </h3>
                   <p className="font-mono text-sm text-text-secondary">{entry.degree}</p>
-                  <p className="font-mono text-xs text-text-secondary/60">
+                  <p className="font-mono text-xs text-text-secondary">
                     {entry.location} • {entry.period}
                   </p>
                   <p className="font-mono text-xs text-terminal-green/60 mt-2 italic">
