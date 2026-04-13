@@ -52,10 +52,12 @@ export function SkillBar({ skill, index, onCompanyClick }: SkillBarProps) {
     >
       <StatusDot status={skill.status} />
 
-      {/* name */}
-      <span className="text-terminal-green">[</span>
-      <span className={`${nameColor} min-w-28`}>{skill.name}</span>
-      <span className="text-terminal-green">]</span>
+      {/* name — bracket + text grouped as one flex item to avoid gap-x splitting them */}
+      <span className="inline-flex">
+        <span className="text-terminal-green">[</span>
+        <span className={`${nameColor} px-0.5`}>{skill.name}</span>
+        <span className="text-terminal-green">]</span>
+      </span>
 
       {/* years */}
       <span className="text-text-secondary">years:</span>
