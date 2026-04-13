@@ -125,12 +125,12 @@ export function TerminalSession({ className = '' }: { className?: string }) {
   }, [])
 
   return (
-    <TerminalWindow title="daniel@portfolio:~$" className={`min-h-[400px] ${className}`}>
+    <TerminalWindow title="daniel@portfolio:~$" className={`min-h-100 ${className}`}>
       <div
         style={{ transition: `opacity ${CLEAR_MS}ms ease` }}
         className={isClearing ? 'opacity-0' : 'opacity-100'}
       >
-        <div className="space-y-[2px] text-xs leading-5 font-mono">
+        <div className="space-y-0.5 text-xs leading-5 font-mono">
 
           {/* ── Committed history ───────────────────────────────────────── */}
           {completedLines.map((line, i) => (
