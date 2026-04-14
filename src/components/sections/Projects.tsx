@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { useInView } from '../../hooks/useInView'
 import { TerminalWindow } from '../ui/TerminalWindow'
@@ -37,15 +37,11 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 
 export function Projects({ className = '' }: ProjectsProps) {
   const [selected, setSelected] = useState(0)
-  const [showPreview, setShowPreview] = useState(false)
+  const [previewId, setPreviewId] = useState<string | null>(null)
   const [ref, inView] = useInView()
 
-  // Reset preview when switching projects
-  useEffect(() => {
-    setShowPreview(false)
-  }, [selected])
-
   const project = projectsData[selected]
+  const showPreview = previewId === project.id
   const displayName = (name: string) => name.replace(/-/g, '_').toUpperCase()
 
   return (
@@ -191,7 +187,7 @@ export function Projects({ className = '' }: ProjectsProps) {
                       {project.image && (
                         <button
                           type="button"
-                          onClick={() => setShowPreview(v => !v)}
+                          onClick={() => setPreviewId(showPreview ? null : project.id)}
                           className="font-mono text-xs border border-border-subtle text-text-secondary px-4 py-1.5 hover:border-terminal-green hover:text-terminal-green transition-colors"
                         >
                           {showPreview ? '[./hide_preview]' : '[./show_preview]'}
