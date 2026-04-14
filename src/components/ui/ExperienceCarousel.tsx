@@ -31,6 +31,7 @@ export function ExperienceCarousel({ highlightedId, className = '' }: Experience
   const [direction, setDirection] = useState(1)
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const touchStartX = useRef<number | null>(null)
 
   const goTo = useCallback((index: number, dir: number) => {
     setDirection(dir)
@@ -65,7 +66,7 @@ export function ExperienceCarousel({ highlightedId, className = '' }: Experience
     if (!highlightedId) return
     const idx = experienceData.findIndex((e) => e.id === highlightedId)
     if (idx !== -1) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+
       goTo(idx, idx > current ? 1 : -1)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,9 +77,22 @@ export function ExperienceCarousel({ highlightedId, className = '' }: Experience
       className={`relative w-full ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={(e) => {
+        setIsPaused(true)
+        touchStartX.current = e.touches[0].clientX
+      }}
+      onTouchEnd={(e) => {
+        setIsPaused(false)
+        if (touchStartX.current === null) return
+        const delta = touchStartX.current - e.changedTouches[0].clientX
+        if (Math.abs(delta) > 50) {
+          if (delta > 0) next(); else prev()
+        }
+        touchStartX.current = null
+      }}
     >
       {/* Slide viewport */}
-      <div className="relative overflow-hidden h-[560px] md:h-[420px]">
+      <div className="relative overflow-hidden h-155 md:h-105">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={current}

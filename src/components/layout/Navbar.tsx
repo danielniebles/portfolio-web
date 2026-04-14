@@ -67,7 +67,7 @@ export function Navbar() {
           <a
             href={`#${SECTION_IDS.contact}`}
             onClick={close}
-            className="font-mono text-sm font-bold bg-terminal-green text-bg-deep px-4 py-1.5 hover:scale-95 transition-transform duration-100"
+            className="font-mono text-sm font-bold bg-terminal-green text-bg-deep px-3.5 md:px-4 py-1.5 hover:scale-95 transition-transform duration-100"
           >
             [contact_me]
           </a>
