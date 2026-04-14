@@ -1,6 +1,6 @@
 const links = [
   { label: 'GITHUB',   href: 'https://github.com/danielniebles' },
-  { label: 'LINKEDIN', href: 'https://linkedin.com/in/danielniebles' },
+  { label: 'LINKEDIN', href: 'https://linkedin.com/in/daniel-niebles' },
   { label: 'TERMINAL', href: '#contact' },
 ]
 

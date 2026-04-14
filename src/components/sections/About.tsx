@@ -79,7 +79,7 @@ export function About({ className = '' }: AboutProps) {
           {/* LinkedIn link */}
           <motion.a
             variants={itemVariants}
-            href="https://linkedin.com/in/danielniebles"
+            href="https://linkedin.com/in/daniel-niebles"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 font-mono text-sm text-text-secondary hover:text-terminal-green transition-colors border border-border-subtle hover:border-terminal-green px-4 py-2"
