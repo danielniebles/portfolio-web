@@ -19,7 +19,7 @@ const itemVariants: Variants = {
 
 const stats = [
   { key: 'years_active',    value: '> 7+' },
-  { key: 'systems_built',   value: '> 50+' },
+  { key: 'countries_shipped',   value: '> 6+' },
   { key: 'languages', value: '> 3' },
 ]
 
@@ -46,26 +46,30 @@ export function About({ className = '' }: AboutProps) {
         <div className="space-y-8">
           <motion.div variants={itemVariants} className="border-l-4 border-terminal-green pl-6">
             <h2 className="text-4xl font-bold tracking-tight mb-1">BIO_DATA</h2>
-            <p className="text-terminal-green font-mono text-xs opacity-60">
+            <p className="text-terminal-green font-mono text-xs opacity-60" aria-hidden="true">
               // access_granted: user_history
             </p>
           </motion.div>
 
           <motion.p variants={itemVariants} className="text-base leading-relaxed text-text-secondary">
-            With over{' '}
-            <span className="text-terminal-green">7 years</span> of deep-dive experience in digital
-            craftsmanship, I've evolved from writing clean scripts to orchestrating complex enterprise
-            ecosystems. At <span className="text-terminal-green">Whirlpool</span>, I currently steer
-            technical vision — ensuring high-scale platforms stay as robust as they are intuitive.
-            Trilingual, globally experienced (Colombia, China), and obsessed with the craft.
+          I'm an Electronic Engineer who crossed over from{' '}
+          <span className="text-terminal-green">telecom infrastructure</span> into frontend
+          development and never looked back. Today I lead the team responsible for the
+          top-of-funnel experience on the platform unifying{' '}
+          <span className="text-terminal-green">Whirlpool's</span> storefronts across{' '}
+          <span className="text-terminal-green">six countries</span> — one codebase that adapts
+          to every brand, every market. I speak three languages, picked up{' '}
+          <span className="text-terminal-green">Portuguese</span> on the job working with the
+          Brazil team that drives the project. I care about shipping on time and doing it right
+          — it's just how I work.
           </motion.p>
 
           {/* Stat counters */}
           <motion.div variants={itemVariants} className="grid grid-cols-3 gap-4">
             {stats.map(({ key, value }) => (
-              <div key={key} className="bg-surface border border-border-subtle p-4">
+              <div key={key} className="bg-surface border border-border-subtle p-4 min-w-0 overflow-hidden">
                 <p className="text-terminal-green font-mono text-xl font-bold">{value}</p>
-                <p className="text-[10px] uppercase tracking-widest text-text-secondary font-mono mt-1">
+                <p className="text-[10px] sm:text-xs uppercase tracking-widest text-text-secondary font-mono mt-1 truncate">
                   {key}
                 </p>
               </div>

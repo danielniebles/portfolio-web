@@ -31,11 +31,10 @@ export function Education({ className = '' }: EducationProps) {
     >
       <div className="max-w-3xl mx-auto px-6">
 
-        {/* Section heading — git log style */}
+        {/* Section heading */}
         <motion.div variants={itemVariants} className="mb-12 border-b border-border-subtle/30 pb-4">
-          <h2 className="text-xl font-mono font-bold tracking-widest text-terminal-green">
-            git log --all --graph --decorate
-          </h2>
+          <p className="text-terminal-green font-mono text-sm mb-2">git log --all --graph --decorate</p>
+          <h2 className="text-4xl font-bold tracking-tighter">Education</h2>
         </motion.div>
 
         {/* Commit timeline */}

@@ -78,7 +78,7 @@ export function TerminalForm() {
       {/* 01 — Name */}
       <AnimatePresence>
         <motion.div key="name" variants={fieldVariants} initial="hidden" animate="visible">
-          <label className="block font-mono text-[10px] text-terminal-green uppercase mb-2 tracking-widest">
+          <label className="block font-mono text-xs text-terminal-green uppercase mb-2 tracking-widest">
             01_Identity
           </label>
           {step === 'name' ? (
@@ -102,7 +102,7 @@ export function TerminalForm() {
       {step !== 'name' && (
         <AnimatePresence>
           <motion.div key="email" variants={fieldVariants} initial="hidden" animate="visible">
-            <label className="block font-mono text-[10px] text-terminal-green uppercase mb-2 tracking-widest">
+            <label className="block font-mono text-xs text-terminal-green uppercase mb-2 tracking-widest">
               02_Endpoint
             </label>
             {step === 'email' ? (
@@ -128,7 +128,7 @@ export function TerminalForm() {
       {(step === 'message' || step === 'submitting' || step === 'done') && (
         <AnimatePresence>
           <motion.div key="message" variants={fieldVariants} initial="hidden" animate="visible">
-            <label className="block font-mono text-[10px] text-terminal-green uppercase mb-2 tracking-widest">
+            <label className="block font-mono text-xs text-terminal-green uppercase mb-2 tracking-widest">
               03_Payload{' '}
               <span className="text-text-secondary normal-case">
                 (Ctrl+Enter to send)

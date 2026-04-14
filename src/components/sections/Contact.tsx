@@ -19,7 +19,7 @@ const itemVariants: Variants = {
 }
 
 const socialLinks = [
-  { label: 'linkedin', href: 'https://linkedin.com/in/danielniebles' },
+  { label: 'linkedin', href: 'https://linkedin.com/in/daniel-niebles' },
   { label: 'github',   href: 'https://github.com/danielniebles' },
   { label: 'terminal', href: `#${SECTION_IDS.contact}` },
 ]

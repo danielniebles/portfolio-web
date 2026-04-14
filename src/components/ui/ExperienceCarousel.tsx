@@ -78,7 +78,7 @@ export function ExperienceCarousel({ highlightedId, className = '' }: Experience
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Slide viewport */}
-      <div className="relative overflow-hidden" style={{ height: '420px' }}>
+      <div className="relative overflow-hidden h-[560px] md:h-[420px]">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={current}

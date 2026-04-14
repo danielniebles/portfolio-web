@@ -29,7 +29,7 @@ const STATUS_MAP: Record<Project['status'], { label: string; cls: string }> = {
 function StatusBadge({ status }: { status: Project['status'] }) {
   const { label, cls } = STATUS_MAP[status]
   return (
-    <span className={`font-mono text-[9px] border px-1.5 py-0.5 uppercase tracking-widest shrink-0 ${cls}`}>
+    <span className={`font-mono text-[10px] border px-1.5 py-0.5 uppercase tracking-widest shrink-0 ${cls}`}>
       {label}
     </span>
   )
@@ -42,6 +42,7 @@ export function Projects({ className = '' }: ProjectsProps) {
 
   const project = projectsData[selected]
   const showPreview = previewId === project.id
+  const isVideo = (src: string) => /\.(mp4|webm|ogg)(\?|$)/i.test(src)
   const displayName = (name: string) => name.replace(/-/g, '_').toUpperCase()
 
   return (
@@ -55,11 +56,10 @@ export function Projects({ className = '' }: ProjectsProps) {
     >
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Section heading — git log command style */}
+        {/* Section heading */}
         <motion.div variants={itemVariants} className="mb-12 border-b border-border-subtle/30 pb-4">
-          <h2 className="text-xl font-mono font-bold tracking-widest text-terminal-green">
-            git log --all --graph --projects
-          </h2>
+          <p className="text-terminal-green font-mono text-sm mb-2">&gt; git log --all --graph --projects</p>
+          <h2 className="text-4xl font-bold tracking-tighter">Projects</h2>
         </motion.div>
 
         {/* Split pane: commit list + graph  |  project card */}
@@ -93,7 +93,7 @@ export function Projects({ className = '' }: ProjectsProps) {
                       <span className="font-mono text-[10px] text-terminal-green shrink-0">
                         {p.commitHash}
                       </span>
-                      <span className="font-mono text-[9px] border border-accent-dim text-accent-dim px-1 shrink-0">
+                      <span className="font-mono text-[10px] border border-accent-dim text-accent-dim px-1 shrink-0">
                         ({p.branch})
                       </span>
                     </div>
@@ -104,7 +104,7 @@ export function Projects({ className = '' }: ProjectsProps) {
                     </span>
 
                     {/* Summary */}
-                    <span className="font-mono text-[10px] text-text-secondary truncate mt-0.5">
+                    <span className="font-mono text-[10px] sm:text-xs text-text-secondary truncate mt-0.5">
                       {p.summary}
                     </span>
                   </button>
@@ -129,7 +129,7 @@ export function Projects({ className = '' }: ProjectsProps) {
                     <p className="font-mono text-xs text-text-secondary">
                       <span className="text-terminal-green">commit </span>
                       {project.commitHash}
-                      <span className="ml-3 border border-accent-dim text-accent-dim font-mono text-[9px] px-1.5 py-0.5">
+                      <span className="ml-3 border border-accent-dim text-accent-dim font-mono text-[10px] px-1.5 py-0.5">
                         ({project.branch})
                       </span>
                     </p>
@@ -157,7 +157,7 @@ export function Projects({ className = '' }: ProjectsProps) {
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="font-mono text-[10px] border border-border-subtle text-text-secondary px-2 py-0.5 uppercase tracking-wider"
+                          className="font-mono text-[10px] sm:text-xs border border-border-subtle text-text-secondary px-2 py-0.5 uppercase tracking-wider"
                         >
                           {t}
                         </span>
@@ -184,7 +184,17 @@ export function Projects({ className = '' }: ProjectsProps) {
                           [./view_repo]
                         </a>
                       )}
-                      {project.image && (
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-mono text-xs font-bold bg-terminal-green text-bg-deep px-4 py-1.5 hover:scale-95 transition-transform duration-100"
+                        >
+                          [./visit_site]
+                        </a>
+                      )}
+                      {project.media && (
                         <button
                           type="button"
                           onClick={() => setPreviewId(showPreview ? null : project.id)}
@@ -197,7 +207,7 @@ export function Projects({ className = '' }: ProjectsProps) {
 
                     {/* Preview — mounts only when toggled, so the GIF loads on demand */}
                     <AnimatePresence initial={false}>
-                      {showPreview && project.image && (
+                      {showPreview && project.media && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1, transition: { duration: 0.35, ease: 'easeOut' } }}
@@ -206,11 +216,22 @@ export function Projects({ className = '' }: ProjectsProps) {
                         >
                           <div className="pt-4 border-t border-border-subtle/30">
                             <div className="border border-border-subtle overflow-hidden aspect-video">
-                              <img
-                                src={project.image}
-                                alt={`${displayName(project.name)} — demo preview`}
-                                className="photo-bw w-full h-full object-cover"
-                              />
+                              {isVideo(project.media) ? (
+                                <video
+                                  src={project.media}
+                                  autoPlay
+                                  muted
+                                  loop
+                                  playsInline
+                                  className="photo-bw w-full h-full object-cover"
+                                />
+                              ) : (
+                                <img
+                                  src={project.media}
+                                  alt={`${displayName(project.name)} — demo preview`}
+                                  className="photo-bw w-full h-full object-cover"
+                                />
+                              )}
                             </div>
                           </div>
                         </motion.div>

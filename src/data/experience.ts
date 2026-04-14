@@ -71,8 +71,11 @@ export const experienceData: ExperienceEntry[] = [
     role: 'Fullstack Developer',
     period: '2020 – Present',
     location: 'Remote',
-    description: 'Independent projects running in parallel — 3 currently active, details in the projects section.',
-    highlights: [],
-    tech: ['React', 'Vue', 'Node.js', 'MongoDB'],
+    description: 'Independent client work running in parallel with full-time roles — see Projects.',
+    highlights: [
+      'Landing pages, internal tools, and platforms for clients across Colombia.',
+      'End-to-end ownership — from architecture decisions to production deployment.',
+    ],
+    tech: ['React', 'Next.js', 'Vue', 'Node.js', 'MongoDB'],
   },
 ]
