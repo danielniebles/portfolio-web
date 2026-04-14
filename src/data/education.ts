@@ -29,15 +29,5 @@ export const educationData: EducationEntry[] = [
     commit: 'c88a321',
     tags: ['tag: v1.1.0'],
     note: '/* Intensive training in networking, cloud computing & leadership */',
-  },
-  {
-    id: 'blcu',
-    institution: 'Beijing Language & Culture University',
-    degree: 'Mandarin Language Studies',
-    period: '2016',
-    location: 'Beijing, China',
-    commit: 'e4f5g6h',
-    tags: ['origin/blcu-2016'],
-    note: '/* Third language acquired: Mandarin — 普通话 */',
-  },
+  }
 ]

@@ -37,7 +37,7 @@ export function Contact({ className = '' }: ContactProps) {
       className={`py-section bg-surface relative ${className}`}
     >
       {/* Subtle green glow */}
-      <div className="absolute inset-0 bg-gradient-to-t from-terminal-green/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-terminal-green/2 to-transparent pointer-events-none" />
 
       <div className="max-w-2xl mx-auto px-6 relative z-10">
 

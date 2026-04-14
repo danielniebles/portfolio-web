@@ -12,7 +12,7 @@ export const SECTION_IDS = {
   about:      'about',
   experience: 'experience',
   stack:      'stack',
-  education:  'education',
+  projects:   'projects',
   contact:    'contact',
 } as const
 

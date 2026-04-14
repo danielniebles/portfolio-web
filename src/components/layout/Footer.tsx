@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="w-full py-7 bg-bg-deep border-t border-border-subtle/30">
       <div className="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
         <p className="font-mono text-xs text-text-primary/40 tracking-widest">
-          © 2026 daniel_felipe // root_access.granted
+          © 2026 daniel_niebles // root_access.granted
         </p>
         <nav className="flex gap-8">
           {links.map(({ label, href }) => (

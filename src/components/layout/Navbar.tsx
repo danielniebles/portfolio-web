@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'about',      href: `#${SECTION_IDS.about}` },
   { label: 'experience', href: `#${SECTION_IDS.experience}` },
   { label: 'stack',      href: `#${SECTION_IDS.stack}` },
+  { label: 'projects',   href: `#${SECTION_IDS.projects}` },
   { label: 'contact',    href: `#${SECTION_IDS.contact}` },
 ]
 
@@ -78,12 +79,12 @@ export function Navbar() {
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
             aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] shrink-0"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.25 shrink-0"
           >
             <span
               className={[
                 'block h-px w-5 bg-terminal-green transition-all duration-200 origin-center',
-                isOpen ? 'rotate-45 translate-y-[6px]' : '',
+                isOpen ? 'rotate-45 translate-y-1.5' : '',
               ].join(' ')}
             />
             <span
@@ -95,7 +96,7 @@ export function Navbar() {
             <span
               className={[
                 'block h-px w-5 bg-terminal-green transition-all duration-200 origin-center',
-                isOpen ? '-rotate-45 -translate-y-[6px]' : '',
+                isOpen ? '-rotate-45 -translate-y-1.5' : '',
               ].join(' ')}
             />
           </button>

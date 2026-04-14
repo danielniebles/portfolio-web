@@ -5,7 +5,7 @@ import { Hero }       from './components/sections/Hero'
 import { About }      from './components/sections/About'
 import { Experience } from './components/sections/Experience'
 import { TechStack }  from './components/sections/TechStack'
-import { Education }  from './components/sections/Education'
+import { Projects }   from './components/sections/Projects'
 import { Contact }    from './components/sections/Contact'
 import { NAV_HEIGHT } from './lib/constants'
 
@@ -44,7 +44,7 @@ export default function App() {
         <About />
         <Experience highlightedId={highlightedExperienceId} />
         <TechStack onCompanyClick={handleCompanyClick} />
-        <Education />
+        <Projects />
         <Contact />
       </main>
 

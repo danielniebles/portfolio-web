@@ -2,7 +2,6 @@ import { motion, type Variants } from 'framer-motion'
 import { useInView } from '../../hooks/useInView'
 import { TerminalWindow } from '../ui/TerminalWindow'
 import { educationData } from '../../data/education'
-import { SECTION_IDS } from '../../lib/constants'
 
 interface EducationProps {
   className?: string
@@ -23,7 +22,7 @@ export function Education({ className = '' }: EducationProps) {
 
   return (
     <motion.section
-      id={SECTION_IDS.education}
+      id="education"
       ref={ref}
       variants={containerVariants}
       initial="hidden"
